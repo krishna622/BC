@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.theme"
+    package="com.application.kmd.view"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,15 +10,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
     
     <application
+        android:name="com.application.kmd.view.UILApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
-        <activity
-            android:name="com.theme.activities.SplashActivity"
-            android:screenOrientation="portrait" >
+      <activity
+            android:name=".activity.HomeActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,8 +28,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.theme.activities.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:name=".activity.SimpleImageActivity"
+            android:label="@string/ac_name_image_list" />
+		<activity
+			android:name=".activity.ComplexImageActivity"
+			android:label="@string/ac_name_complex" />
+
+        <!-- Widget -->
+        <receiver android:name=".widget.UILWidgetProvider" >
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -5,20 +5,11 @@
     android:background="@android:color/white"
     android:orientation="vertical" >
 
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="@dimen/sp_20"
-        android:padding="@dimen/dp_8"
-        android:background="@color/maroon"
-        android:textStyle="italic"
-        android:textColor="@android:color/white"
-        android:gravity="center"/>
     <android.support.v4.view.ViewPager
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/viewPager"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+         />
 
 </LinearLayout>

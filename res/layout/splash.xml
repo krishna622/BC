@@ -8,7 +8,7 @@
         android:id="@+id/txt_welcome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/welcome"
+        android:text="Welcome"
         android:textColor="#FF0000"
         android:textSize="@dimen/sp_40"
         android:textStyle="italic"
