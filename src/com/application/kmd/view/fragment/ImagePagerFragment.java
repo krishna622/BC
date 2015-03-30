@@ -10,8 +10,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -31,6 +31,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 public class ImagePagerFragment extends BaseFragment {
 
 	public static final int INDEX = 2;
+	public Bitmap loadedImageForWall;
 
 	String[] imageUrls = Constants.IMAGES;
 
@@ -80,7 +81,7 @@ public class ImagePagerFragment extends BaseFragment {
 		}
 
 		@Override
-		public Object instantiateItem(ViewGroup view, int position) {
+		public Object instantiateItem(ViewGroup view, final int position) {
 			View imageLayout = inflater.inflate(R.layout.item_pager_image, view, false);
 			assert imageLayout != null;
 			final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
@@ -120,21 +121,31 @@ public class ImagePagerFragment extends BaseFragment {
 				@Override
 				public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
 					spinner.setVisibility(View.GONE);
-					
-			            // TODO Auto-generated method stub
-//			            WallpaperManager myWallpaperManager 
-//			            = WallpaperManager.getInstance(getActivity());
-//			            try {
-//			            	imageView.buildDrawingCache();
-//			                myWallpaperManager.setBitmap(imageView.getDrawingCache());
-//			            } catch (IOException e) {
-//			                // TODO Auto-generated catch block
-//			                e.printStackTrace();
-//			            }
-			            
+					loadedImageForWall = loadedImage;
+					//Toast.makeText(getActivity(), "position"+position, Toast.LENGTH_LONG).show();
 				}
 			});
-
+			/**
+			 * listner for set image wallpaper
+			 */
+			
+			imageView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					 WallpaperManager myWallpaperManager 
+			            = WallpaperManager.getInstance(getActivity());
+			            try {
+			            	//imageView.buildDrawingCache();
+			                myWallpaperManager.setBitmap(loadedImageForWall);
+			                Toast.makeText(getActivity(), "Wallpaper has been set", Toast.LENGTH_LONG).show();
+			            } catch (IOException e) {
+			                // TODO Auto-generated catch block
+			                e.printStackTrace();
+			            }
+				}
+			});
 			view.addView(imageLayout, 0);
 			
 			return imageLayout;
